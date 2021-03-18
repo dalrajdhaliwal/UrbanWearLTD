@@ -95,7 +95,8 @@ namespace ClassLibrary
                 ItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
                 CustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
                 ItemColour = Convert.ToChar(DB.DataTable.Rows[0]["Item Colour"]);
-                OrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);                ProductDescription = Convert.ToString(DB.DataTable.Rows[0]["Product Description"]);
+                OrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
+                ProductDescription = Convert.ToString(DB.DataTable.Rows[0]["Product Description"]);
                 //return that everthing worked ok
                 return true;
             }
