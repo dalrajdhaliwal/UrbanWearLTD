@@ -106,7 +106,10 @@ namespace Testing3
         [TestMethod]
         public void ValidMethodOK()
         {
-            clsOrder AOrder = new clsOrder();           string Error = "";           Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);           Assert.AreEqual(Error, "");
+            clsOrder AOrder = new clsOrder();
+           string Error = "";
+           Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+           Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -282,7 +285,8 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             DateTime OrderDate;
-            OrderDate = DateTime.Now.Date;            OrderDate = OrderDate.AddYears(-2).AddDays(-1);
+            OrderDate = DateTime.Now.Date;
+            OrderDate = OrderDate.AddYears(-2).AddDays(-1);
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreNotEqual(Error, "");
         }
@@ -293,7 +297,8 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             DateTime OrderDate;
-            OrderDate = DateTime.Now.Date;            OrderDate = OrderDate.AddYears(-2);
+            OrderDate = DateTime.Now.Date;
+            OrderDate = OrderDate.AddYears(-2);
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreEqual(Error, "");
         }
@@ -305,10 +310,14 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             DateTime OrderDate;
-            OrderDate = DateTime.Now.Date;            OrderDate = OrderDate.AddYears(-1);
+            OrderDate = DateTime.Now.Date;
+            OrderDate = OrderDate.AddYears(-1);
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreEqual(Error, "");
-        }        [TestMethod]        public void OrderDateMax()
+        }
+
+        [TestMethod]
+        public void OrderDateMax()
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
@@ -324,7 +333,8 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             DateTime OrderDate;
-            OrderDate = DateTime.Now.Date;            OrderDate = OrderDate.AddDays(+1);
+            OrderDate = DateTime.Now.Date;
+            OrderDate = OrderDate.AddDays(+1);
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreNotEqual(Error, "");
         }
@@ -335,14 +345,19 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             decimal ItemPrice = 0;
-            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);            Assert.AreNotEqual(Error, "");        }
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
         [TestMethod]
         public void ItemPriceMin()
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
             decimal ItemPrice = 1;
-            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);            Assert.AreEqual(Error, "");        }
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
 
 
         [TestMethod]
@@ -350,8 +365,10 @@ namespace Testing3
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
-            decimal ItemPrice = 12;
-            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);            Assert.AreEqual(Error, "");        }
+            decimal ItemPrice = decimal.MaxValue/2;
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
 
 
         [TestMethod]
@@ -360,7 +377,9 @@ namespace Testing3
             clsOrder AOrder = new clsOrder();
             string Error = "";
             decimal ItemPrice = decimal.MaxValue;
-            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);            Assert.AreEqual(Error, "");        }
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
 
         [TestMethod]
         public void CustomeAddressMinLessOne()
@@ -416,7 +435,8 @@ namespace Testing3
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreNotEqual(Error, "");
         }
-
+
+
 
 
     }
