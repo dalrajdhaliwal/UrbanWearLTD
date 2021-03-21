@@ -1,1158 +1,384 @@
 ﻿using System;
-
 using ClassLibrary;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
-
-
-
-namespace Testing2
-
+namespace Testing3
 {
-
     [TestClass]
-
     public class tstStock
-
     {
-
-        //Good test data
-
-        // create some test data to pass to the method
-
-        string GameId = "3";
-
-        string GameTitle = "A Game Title";
-
-        string GameDescription = "A Game Description";
-
-        string Price = "60";
-
-        string ReleaseDate = DateTime.Now.Date.ToString();
-
-        string StockQuantity = "1000";
+        //good test data
+        private int ProductId = 22;
+        private string ProductName = "Jacket";
+        private string ProductDescription = "whatever description";
+        private decimal Price = 5;
+        private DateTime LastRestockDate = DateTime.Now;
+        private int InStock = 89;
+        private int StockVariants = 205;
 
 
 
 
 
         [TestMethod]
-
-        public void InstanceOK()
-
+        public void ProductDescriptionOK()
         {
-
             clsStock AStock = new clsStock();
-
-            Assert.IsNotNull(AStock);
-
+            string TestData = ProductDescription;
+            AStock.ProductDescription = TestData;
+            Assert.AreEqual(AStock.ProductDescription, TestData);
         }
-
-
-
-
 
         [TestMethod]
 
-        public void GameIdOK()
+        public void LastRestockDateOK()
 
         {
-
             clsStock AStock = new clsStock();
-
-            int TestData = 1;
-
-            AStock.GameId = TestData;
-
-            Assert.AreEqual(AStock.GameId, TestData);
-
+            DateTime TestData = DateTime.Now.Date;
+            AStock.LastRestockDate = TestData;
+            Assert.AreEqual(AStock.LastRestockDate, TestData);
         }
-
-
-
-
 
         [TestMethod]
 
-        public void GameTitleOK()
+        public void ProductNameOK()
 
         {
-
             clsStock AStock = new clsStock();
-
-            string TestData = "A Game Title";
-
-            AStock.GameTitle = TestData;
-
-            Assert.AreEqual(AStock.GameTitle, TestData);
-
+            String TestData = "Product Name";
+            AStock.ProductName = TestData;
+            Assert.AreEqual(AStock.ProductName, TestData);
         }
-
-
-
-
 
         [TestMethod]
 
         public void InStockOK()
 
         {
-
             clsStock AStock = new clsStock();
-
-            Boolean TestData = true;
-
+            int TestData = 121;
             AStock.InStock = TestData;
-
             Assert.AreEqual(AStock.InStock, TestData);
-
         }
-
-
-
-
 
         [TestMethod]
 
-        public void ReleaseDateOK()
+        public void ProductIdOK()
 
         {
-
             clsStock AStock = new clsStock();
-
-            DateTime TestData = DateTime.Now.Date;
-
-            AStock.ReleaseDate = TestData;
-
-            Assert.AreEqual(AStock.ReleaseDate, TestData);
-
+            int TestData = 134;
+            AStock.ProductId = TestData;
+            Assert.AreEqual(AStock.ProductId, TestData);
         }
-
-
-
-
 
         [TestMethod]
 
-        public void PriceOK()
+        public void PriceOk()
 
         {
-
             clsStock AStock = new clsStock();
-
-            decimal TestData = 60;
-
+            decimal TestData = 35;
             AStock.Price = TestData;
-
             Assert.AreEqual(AStock.Price, TestData);
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void StockQuantityOK()
-
+        public void StockVariantsOk()
         {
-
             clsStock AStock = new clsStock();
-
-            Int32 TestData = 1000;
-
-            AStock.StockQuantity = TestData;
-
-            Assert.AreEqual(AStock.StockQuantity, TestData);
+            int TestData = 'r';
+            AStock.StockVariants = TestData;
+            Assert.AreEqual(AStock.StockVariants, TestData);
 
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameDescriptionOK()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string TestData = "A description of the game is that it is a game";
-
-            AStock.GameDescription = TestData;
-
-            Assert.AreEqual(AStock.GameDescription, TestData);
-
-        }
-
-
-
-
-
-        [TestMethod]
-
         public void ValidMethodOK()
-
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameTitleMinLessOne()
-
+        public void ProductDescriptionMinLessOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductDescription = "";
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameTitleMin()
-
+        public void ProductDescriptionMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "a";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductDescription = "a";
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
         }
 
 
-
-
-
         [TestMethod]
-
-        public void GameTitleMinPlusOne()
-
+        public void ProductDescriptionMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "aa";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductDescription = "";
+            ProductDescription = ProductDescription.PadLeft(100, '*');
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameTitleMaxLessOne()
-
+        public void ProductDescriptionMaxPlusOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "";
-
-            GameTitle = GameTitle.PadLeft(49, '*');
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void GameTitleMax()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            string GameTitle = "";
-
-            GameTitle = GameTitle.PadLeft(50, '*');
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void GameTitleMaxPlusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            string GameTitle = "";
-
-            GameTitle = GameTitle.PadLeft(51, '*');
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductDescription = "";
+            ProductDescription = ProductDescription.PadLeft(101, '*');
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
         }
 
 
-
-
+        [TestMethod]
+        public void ProductIdMinLessOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int ProductId = 0;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
+        }
 
         [TestMethod]
-
-        public void GameTitleMid()
-
+        public void ProductIdMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "";
-
-            GameTitle = GameTitle.PadLeft(25, '*');
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int ProductId = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
         }
-
-
-
-
-
         [TestMethod]
-
-        public void GameTitleExtremeMax()
-
+        public void ProductIdMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameTitle = "";
-
-            GameTitle = GameTitle.PadLeft(1000, '*');
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void ReleaseDateExtremeMin()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(-100);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void ReleaseDateMinMinusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(-50).AddDays(-1);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void ReleaseDateMin()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(-50);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int ProductId = 50;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
+        }
+        [TestMethod]
+        public void ProductIdMaxPlusOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int ProductId = 501;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
         }
 
-
-
-
+        [TestMethod]
+        public void ProductNameMinLessOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            string ProductName = "";
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
+        }
 
         [TestMethod]
-
-        public void ReleaseDateMinPlusOne()
-
+        public void ProductNameMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(-50).AddDays(1);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductName = "b";
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
         }
 
 
-
-
-
         [TestMethod]
-
-        public void ReleaseDateMax()
-
+        public void ProductNameMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(10);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductName = "";
+            ProductName = ProductName.PadLeft(35, '*');
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void ReleaseDateExtremeMax()
-
+        public void ProductNameMaxPlusOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            DateTime TestDate;
-
-            TestDate = DateTime.Now.Date;
-
-            TestDate = TestDate.AddYears(100);
-
-            String ReleaseDate = TestDate.ToString();
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            string ProductName = "";
+            ProductName = ProductName.PadLeft(36, '*');
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void ReleaseDateInvalidData()
-
+        public void InStockMinLessOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String ReleaseDate = "this is not a date!";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int InStock = 0;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameDescriptionMinMinusOne()
-
+        public void InStockMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameDescription = "";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void GameDescriptionMin()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            string GameDescription = "";
-
-            GameDescription = "a";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int InStock = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
         }
-
-
-
-
-
         [TestMethod]
-
-        public void GameDescriptionMinPlusOne()
-
+        public void InStockMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameDescription = "";
-
-            GameDescription = "aa";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int InStock = 100;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void InStockMaxPlusOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int InStock = 101;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
+        }
 
-
-
-
-
+        [TestMethod]
+        public void StockVariantsMinLessOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int StockVariants = 0;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
         }
 
 
-
-
-
         [TestMethod]
-
-        public void GameDescriptionMaxMinusOne()
-
+        public void StockVariantsMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameDescription = "";
-
-            GameDescription = GameDescription.PadLeft(char.MaxValue - 1, 'a'); ;
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int StockVariants = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameDescriptionMax()
-
+        public void StockVariantsMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameDescription = "";
-
-            GameDescription = GameDescription.PadLeft(char.MaxValue, 'a'); ;
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int StockVariants = 300;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void GameDescriptionMaxPlusOne()
-
+        public void StockVariantsMaxPlusOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            string GameDescription = "";
-
-            GameDescription = GameDescription.PadLeft(char.MaxValue + 1, 'a'); ;
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            int StockVariants = 301;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
-
-
-
-
         }
 
 
 
-
-
         [TestMethod]
-
-        public void PriceInvalidData()
-
+        public void LastRestockDateMinMinusOne()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String Price = "Owen";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
+            DateTime LastRestockDate;
+            LastRestockDate = DateTime.Now.Date; LastRestockDate = LastRestockDate.AddYears(-1).AddDays(-1);
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreNotEqual(Error, "");
-
-
-
-
-
         }
 
-
-
-
-
         [TestMethod]
-
-        public void PriceExtremeMin()
-
+        public void LastRestockDateMin()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String Price = "-10000000";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
+            DateTime LastRestockDate;
+            LastRestockDate = DateTime.Now.Date; LastRestockDate = LastRestockDate.AddYears(-1);
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
         }
-
-
-
-
-
         [TestMethod]
-
-        public void PriceMinMinusOne()
-
+        public void LastRestockDateMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String Price = "-0.01";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
+            DateTime LastRestockDate;
+            LastRestockDate = DateTime.Now.Date;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
         }
 
-
-
-
+        [TestMethod]
+        public void LastRestockDateMaxPlusOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            DateTime LastRestockDate;
+            LastRestockDate = DateTime.Now.Date; LastRestockDate = LastRestockDate.AddDays(+1);
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreNotEqual(Error, "");
+        }
 
         [TestMethod]
-
+        public void PriceMinLessOne()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            decimal Price = 0;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price); Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
         public void PriceMin()
-
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String Price = "0.00";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
+            decimal Price = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price); Assert.AreEqual(Error, "");
         }
-
-
-
-
 
         [TestMethod]
-
-        public void PriceMinPlusOne()
-
+        public void PriceMax()
         {
-
             clsStock AStock = new clsStock();
-
             string Error = "";
-
-            String Price = "0.01";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
+            decimal Price = decimal.MaxValue;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price); Assert.AreEqual(Error, "");
         }
 
 
 
-
-
-        [TestMethod]
-
-        public void StockQuantityExtremeMin()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "-1000000";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMinMinusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "-1";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMin()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "0";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMinPlusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "1";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMaxMinusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "2147483646";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMax()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "2147483647";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityMaxPlusOne()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "2147483648";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void StockQuantityInvalidData()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String StockQuantity = "Owen";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-
-
-
-        [TestMethod]
-
-        public void GameIdInvalidData()
-
-        {
-
-            clsStock AStock = new clsStock();
-
-            string Error = "";
-
-            String GameId = "Owen";
-
-            Error = AStock.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
-
-            Assert.AreNotEqual(Error, "");
-
-
-
-
-
-        }
-
-
-      
-
-
-    
-
-
-
-
-
-    }}
-
+    }
+}
