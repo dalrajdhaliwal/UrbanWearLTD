@@ -2,7 +2,7 @@
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Testing3
+namespace Testing4
 {
     [TestClass]
     public class tstStock
@@ -122,7 +122,16 @@ namespace Testing3
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
         }
-
+        [TestMethod]
+        public void ProductDescriptionMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            string ProductDescription = "";
+            ProductDescription = ProductDescription.PadLeft(50, '*');
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
 
         [TestMethod]
         public void ProductDescriptionMax()
@@ -167,6 +176,16 @@ namespace Testing3
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
+        public void ProductIdMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int ProductId = 25;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
         public void ProductIdMax()
         {
             clsStock AStock = new clsStock();
@@ -201,6 +220,18 @@ namespace Testing3
             clsStock AStock = new clsStock();
             string Error = "";
             string ProductName = "b";
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void ProductNameMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            string ProductName = "";
+            ProductName = ProductName.PadLeft(17, '*');
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
         }
@@ -247,6 +278,17 @@ namespace Testing3
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void InStockMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int InStock = 50;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
         [TestMethod]
         public void InStockMax()
         {
@@ -283,6 +325,16 @@ namespace Testing3
             clsStock AStock = new clsStock();
             string Error = "";
             int StockVariants = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StockVariantsMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            int StockVariants = 150;
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
         }
@@ -330,6 +382,18 @@ namespace Testing3
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void LastRestockDateMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            DateTime LastRestockDate;
+            LastRestockDate = DateTime.Now.Date; LastRestockDate = LastRestockDate.AddMonths(-6);
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
         [TestMethod]
         public void LastRestockDateMax()
         {
@@ -366,6 +430,15 @@ namespace Testing3
             clsStock AStock = new clsStock();
             string Error = "";
             decimal Price = 1;
+            Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price); Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMid()
+        {
+            clsStock AStock = new clsStock();
+            string Error = "";
+            decimal Price = decimal.MaxValue/2;
             Error = AStock.Valid(ProductId, ProductDescription, InStock, ProductName, StockVariants, LastRestockDate, Price); Assert.AreEqual(Error, "");
         }
 
