@@ -4,18 +4,125 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
-        
+        private Int32 mOrderID;
+        private int mCustomerNo;
+        private string mCustomerAddress;
+        private DateTime mOrderDate;
+        private decimal mItemPrice;
+        private string mItemColour;
+        private bool mAvailability;
+        private string mProductDescription;
 
-        public string ProductDescription { get; set; }
-        public DateTime OrderDate { get; set; }
-        public string CustomerAddress { get; set; }
-        public int CustomerNo { get; set; }
-        public int OrderId { get; set; }
-        public decimal ItemPrice { get; set; }
-        public char ItemColour { get; set; }
-        public bool Availability { get; set; }
 
-        public string Valid(int OrderId, string ProductDescription, int CustomerNo, string CustomerAddress, char ItemColour, DateTime OrderDate, bool Availability, decimal ItemPrice)
+
+
+        public Int32 OrderID {
+        get
+            {
+                return mOrderID;
+            }
+        set
+            {
+                mOrderID = value;
+            }
+
+        }
+
+
+        public Int32 CustomerNo
+        {
+            get
+            {
+                return mCustomerNo;
+            }
+            set
+            {
+                mCustomerNo = value;
+            }
+
+        }
+
+        public string ProductDescription
+        {
+            get
+            {
+                return mProductDescription;
+            }
+            set
+            {
+                mProductDescription = value;
+            }
+
+        }
+
+        public DateTime OrderDate
+        {
+            get
+            {
+                return mOrderDate;
+            }
+            set
+            {
+                mOrderDate = value;
+            }
+
+        }
+
+        public string CustomerAddress
+        {
+            get
+            {
+                return mCustomerAddress;
+            }
+            set
+            {
+                mCustomerAddress = value;
+            }
+
+        }
+
+        public decimal ItemPrice
+        {
+            get
+            {
+                return mItemPrice;
+            }
+            set
+            {
+                mItemPrice = value;
+            }
+
+        }
+
+
+
+        public string ItemColour
+        {
+            get
+            {
+                return mItemColour;
+            }
+            set
+            {
+                mItemColour = value;
+            }
+
+        }
+
+        public bool Availability
+        {
+            get
+            {
+                return mAvailability;
+            }
+            set
+            {
+                mAvailability = value;
+            }
+
+        }
+
+        public string Valid(int OrderId, string ProductDescription, int CustomerNo, string CustomerAddress, string ItemColour, DateTime OrderDate, bool Availability, decimal ItemPrice)
         {
             if (OrderId < 1)
             {
@@ -50,9 +157,13 @@ namespace ClassLibrary
             {
                 return "CustomerAddress cannot exceed 25 chars";
             }
-            else if (ItemColour == ' ')
+            else if (ItemColour.Length < 3)
             {
-                return "Item Colour cannot be blank";
+                return "Item Colour cannot have less than 3 characters as red is the shortest char colour";
+            }
+            else if (ItemColour.Length > 10)
+            {
+                return "Item Colour cannot be more than 10 characters";
             }
             else if (OrderDate <= DateTime.Now.AddYears(-2).AddDays(-1))
             {
@@ -76,36 +187,28 @@ namespace ClassLibrary
             }
         }
 
-
-        public bool Find(int OrderId)
+        public bool Find(int OrderID)
         {
-            //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
-            //add the parameter for the game Id to search for
-            DB.AddParameter("@OrderId", OrderId);
-            //execute the stored procedure
-            DB.Execute("sproc_tblOrders_FilterByOrderId");
-            //if one record is found (there should be either one or zero!)
+            DB.AddParameter("@OrderID", OrderID);
+            DB.Execute("sproc_tblOrder_FilterByOrderID");
+
             if (DB.Count == 1)
             {
-                //copy the data from the database to the private data members
-                OrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
-                Availability = Convert.ToBoolean(DB.DataTable.Rows[0]["Availability"]);
-                CustomerNo = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNo"]);
-                ItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
-                CustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
-                ItemColour = Convert.ToChar(DB.DataTable.Rows[0]["Item Colour"]);
-                OrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
-                ProductDescription = Convert.ToString(DB.DataTable.Rows[0]["Product Description"]);
-                //return that everthing worked ok
+                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
+                mCustomerNo = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNo"]);
+                mProductDescription = Convert.ToString(DB.DataTable.Rows[0]["ProductDescription"]);
+                mCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+                mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
+                mAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Availability"]);
+                mItemColour = Convert.ToString(DB.DataTable.Rows[0]["ItemColour"]);
+                mItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
                 return true;
             }
-            //if no records was found
             else
             {
-                //return false indicating a problem
                 return false;
-           }
+            }
         }
     }
 }

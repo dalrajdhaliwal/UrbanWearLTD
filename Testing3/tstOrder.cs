@@ -12,7 +12,7 @@ namespace Testing3
         private int OrderId = 3;
         private int CustomerNo = 36;
         private DateTime OrderDate = DateTime.Now;
-        private char ItemColour = 'r';
+        private string ItemColour = "red";
         private Boolean Availability = true;
         private string CustomerAddress = "LE5 1QQ, 39 Random Street";
         private decimal ItemPrice = 10;
@@ -78,8 +78,8 @@ namespace Testing3
         {
             clsOrder AOrder = new clsOrder();
             int TestData = 134;
-            AOrder.OrderId = TestData;
-            Assert.AreEqual(AOrder.OrderId, TestData);
+            AOrder.OrderID = TestData;
+            Assert.AreEqual(AOrder.OrderID, TestData);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace Testing3
         public void ItemColourOk()
         {
             clsOrder AOrder = new clsOrder();
-            char TestData = 'r';
+            string TestData = "blue";
             AOrder.ItemColour = TestData;
             Assert.AreEqual(AOrder.ItemColour, TestData);
 
@@ -270,17 +270,58 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void ItemColourBlank()
+        public void ItemColourMinLessOne()
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
-            char ItemColour = ' ';
+            string ItemColour = "re";
             Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
             Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void OrderDateMinMinusOne()
+        public void ItemColourMin()
+        {
+            clsOrder AOrder = new clsOrder();
+            string Error = "";
+            string ItemColour = "red";
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemColourMax()
+        {
+            clsOrder AOrder = new clsOrder();
+            string Error = "";
+            string ItemColour = "aaaaaaaaaa";
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemColourMid()
+        {
+            clsOrder AOrder = new clsOrder();
+            string Error = "";
+            string ItemColour = "aaaaa";
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemColourMaxPlusOne()
+        {
+            clsOrder AOrder = new clsOrder();
+            string Error = "";
+            string ItemColour = "aaaaaaaaaaa";
+            Error = AOrder.Valid(OrderId, ProductDescription, CustomerNo, CustomerAddress, ItemColour, OrderDate, Availability, ItemPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void OrderDateMinLessOne()
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
@@ -437,6 +478,137 @@ namespace Testing3
         }
 
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestOrderIdFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.OrderID != 1)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestCustomerNoFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.CustomerNo != 876)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+
+        [TestMethod]
+        public void TestOrderDateFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.OrderDate != Convert.ToDateTime("20/04/2021"))
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestAvailabilityFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.Availability != true)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestCustomerAddressFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.CustomerAddress != "LE1 2MA")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestItemColourFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.ItemColour != "red")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestItemPriceFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.ItemPrice != 43)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+
+        [TestMethod]
+        public void TestProductDescriptionFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            int OrderID = 1;
+            Found = AOrder.Find(OrderID);
+            if (AOrder.ProductDescription != "Three long sleeve shirts")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
 
 
     }
