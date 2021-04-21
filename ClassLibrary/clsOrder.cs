@@ -122,70 +122,101 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(int OrderId, string ProductDescription, int CustomerNo, string CustomerAddress, string ItemColour, DateTime OrderDate, bool Availability, decimal ItemPrice)
+        public string Valid(string orderId, string productDescription, string customerNo, string customerAddress, string itemColour, string orderDate, string itemPrice)
         {
-            if (OrderId < 1)
+            String Error = "";
+            DateTime DateTemp;
+            int OrderIDTemp;
+            int CustomerNoTemp;
+            Decimal ItemPriceTemp;
+            OrderIDTemp = Convert.ToInt32(orderId);
+            if (OrderIDTemp < 1)
             {
-                return "OrderId cannot be less than 1";
+                Error = Error + "OrderId cannot be less than 1 : ";
             }
-            else if (OrderId > 500)
+            else if (OrderIDTemp > 500)
             {
-                return "OrderId cannot exceed the set max of 500";
+                Error = Error + "OrderId cannot exceed the set max of 500";
+            }
+            if (productDescription.Length < 1)
+            {
+                Error= Error+ "Product Description cannot be blank";
+            }
+            else if (productDescription.Length > 50)
+            {
+                Error= Error+ "Product Description cannot exceed 50 chars";
+            }
+            CustomerNoTemp = Convert.ToInt32(customerNo);
+            if (CustomerNoTemp < 1)
+            {
+                Error= Error+ "Customer Number cannot be 0";
+            }
+            else if (CustomerNoTemp > 1000)
+            {
+                Error= Error+ "Customer Number cannot be more than 1000";
+            }
+             if (customerAddress.Length < 1)
+            {
+                Error= Error+ "CustomerAddress cannot be blank";
+            }
+            else if (customerAddress.Length > 25)
+            {
+                Error= Error+ "CustomerAddress cannot exceed 25 chars";
+            }
+             if (itemColour.Length < 3)
+            {
+                Error= Error+ "Item Colour cannot have less than 3 characters as red is the shortest char colour";
+            }
+            else if (itemColour.Length > 10)
+            {
+                Error= Error+ "Item Colour cannot be more than 10 characters";
             }
 
-            else if (ProductDescription.Length < 1)
+
+
+            try
             {
-                return "Product Description cannot be blank";
+                DateTemp = Convert.ToDateTime(orderDate);
+                if (DateTemp <= DateTime.Now.AddYears(-2).AddDays(-1))
+                {
+
+                    Error = Error+ "Orders older than 2 years cannot be proccessed";
+                }
+                else if (DateTemp > DateTime.Now)
+                {
+                    Error = Error+ "Order date cannot be in the future";
+                }
+
             }
-            else if (ProductDescription.Length > 50)
+            catch
             {
-                return "Product Description cannot exceed 50 chars";
+                Error = Error + "Invalid data for date";
             }
-            else if (CustomerNo < 1)
+
+
+
+
+
+            ItemPriceTemp = Convert.ToDecimal(itemPrice);
+            if (ItemPriceTemp < 1)
             {
-                return "Customer Number cannot be 0";
+                Error= Error+  "Item Price cannot be less than 1";
             }
-            else if (CustomerNo > 1000)
+            else if (ItemPriceTemp > decimal.MaxValue) 
             {
-                return "Customer Number cannot be more than 1000";
-            }
-            else if (CustomerAddress.Length < 1)
-            {
-                return "CustomerAddress cannot be blank";
-            }
-            else if (CustomerAddress.Length > 25)
-            {
-                return "CustomerAddress cannot exceed 25 chars";
-            }
-            else if (ItemColour.Length < 3)
-            {
-                return "Item Colour cannot have less than 3 characters as red is the shortest char colour";
-            }
-            else if (ItemColour.Length > 10)
-            {
-                return "Item Colour cannot be more than 10 characters";
-            }
-            else if (OrderDate <= DateTime.Now.AddYears(-2).AddDays(-1))
-            {
-                return "Orders older than 2 years cannot be proccessed";
-            }
-            else if (OrderDate > DateTime.Now)
-            {
-                return "Order date cannot be in the future";
-            }
-            else if (ItemPrice < 1)
-            {
-                return "Item Price cannot be less than 1";
-            }
-            else if (ItemPrice > decimal.MaxValue) 
-            {
-                return "Item Price cannot exceed the max decimal value";
+                Error= Error+  "Item Price cannot exceed the max decimal value";
             }
             else
             {
-                return "";
+                return Error;
             }
         }
+
+
+
+
+
+
 
         public bool Find(int OrderID)
         {
