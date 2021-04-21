@@ -122,102 +122,6 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string orderId, string productDescription, string customerNo, string customerAddress, string itemColour, string orderDate, string itemPrice)
-        {
-            String Error = "";
-            DateTime DateTemp;
-            int OrderIDTemp;
-            int CustomerNoTemp;
-            Decimal ItemPriceTemp;
-            OrderIDTemp = Convert.ToInt32(orderId);
-            if (OrderIDTemp < 1)
-            {
-                Error = Error + "OrderId cannot be less than 1 : ";
-            }
-            else if (OrderIDTemp > 500)
-            {
-                Error = Error + "OrderId cannot exceed the set max of 500";
-            }
-            if (productDescription.Length < 1)
-            {
-                Error= Error+ "Product Description cannot be blank";
-            }
-            else if (productDescription.Length > 50)
-            {
-                Error= Error+ "Product Description cannot exceed 50 chars";
-            }
-            CustomerNoTemp = Convert.ToInt32(customerNo);
-            if (CustomerNoTemp < 1)
-            {
-                Error= Error+ "Customer Number cannot be 0";
-            }
-            else if (CustomerNoTemp > 1000)
-            {
-                Error= Error+ "Customer Number cannot be more than 1000";
-            }
-             if (customerAddress.Length < 1)
-            {
-                Error= Error+ "CustomerAddress cannot be blank";
-            }
-            else if (customerAddress.Length > 25)
-            {
-                Error= Error+ "CustomerAddress cannot exceed 25 chars";
-            }
-             if (itemColour.Length < 3)
-            {
-                Error= Error+ "Item Colour cannot have less than 3 characters as red is the shortest char colour";
-            }
-            else if (itemColour.Length > 10)
-            {
-                Error= Error+ "Item Colour cannot be more than 10 characters";
-            }
-
-
-
-            try
-            {
-                DateTemp = Convert.ToDateTime(orderDate);
-                if (DateTemp <= DateTime.Now.AddYears(-2).AddDays(-1))
-                {
-
-                    Error = Error+ "Orders older than 2 years cannot be proccessed";
-                }
-                else if (DateTemp > DateTime.Now)
-                {
-                    Error = Error+ "Order date cannot be in the future";
-                }
-
-            }
-            catch
-            {
-                Error = Error + "Invalid data for date";
-            }
-
-
-
-
-
-            ItemPriceTemp = Convert.ToDecimal(itemPrice);
-            if (ItemPriceTemp < 1)
-            {
-                Error= Error+  "Item Price cannot be less than 1";
-            }
-            else if (ItemPriceTemp > decimal.MaxValue) 
-            {
-                Error= Error+  "Item Price cannot exceed the max decimal value";
-            }
-            else
-            {
-                return Error;
-            }
-        }
-
-
-
-
-
-
-
         public bool Find(int OrderID)
         {
             clsDataConnection DB = new clsDataConnection();
@@ -240,6 +144,91 @@ namespace ClassLibrary
             {
                 return false;
             }
+        }
+
+
+        public string Valid(string customerNo, string customerAddress, string orderDate, string itemPrice, string itemColour, string productDescription)
+        {
+            String Error = "";
+            DateTime OrderDateTemp;
+            int CustomerNoTemp;
+            Decimal ItemPriceTemp;
+            if (productDescription.Length <1)
+            {
+                Error = Error + "Product Description cannot be blank";
+            }
+        if (productDescription.Length > 50)
+            {
+                Error = Error + "Product Description cannot exceed 50 chars";
+            }
+        if (customerAddress.Length<1)
+            {
+                Error = Error + "Customer Address cannot be blank";
+            }
+        if (customerAddress.Length > 25)
+            {
+                Error = Error + "Customer Address cannot exceed 25 chars";
+            }
+        if (itemColour.Length < 3)
+            {
+                Error = Error + "Item Colour cannot be less than 3 chars as the shortest colour name is red";
+            }
+        if (itemColour.Length > 10)
+            {
+                Error = Error + "Item Colour cannot exceed 10 chars";
+            }
+        try
+            {
+                OrderDateTemp = Convert.ToDateTime(orderDate);
+                if (OrderDateTemp <= DateTime.Now.AddYears(-2).AddDays(-1))
+                {
+                    Error = Error + "Orders older than 2 years cannot be proccessed";
+                }
+                if (OrderDateTemp > DateTime.Now)
+                {
+                    Error = Error + "Order date cannot be in the future";
+                }
+            }
+        catch
+            {
+                Error = Error + "Invalid data for date";
+            }
+            try
+            {
+                CustomerNoTemp = Convert.ToInt32(customerNo);
+                if (CustomerNoTemp <1)
+                {
+                    Error = Error + "Customer Number cannot be 0";
+                }
+                if (CustomerNoTemp > 1000)
+                {
+                    Error = Error + "Customer Number cannot be more than 1000";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for Customer Number";
+            }
+
+            try
+            {
+                ItemPriceTemp = Convert.ToDecimal(itemPrice);
+                if (ItemPriceTemp < 1)
+                {
+                    Error = Error + "Item Price cannot be less than 1";
+                }
+                if (ItemPriceTemp > decimal.MaxValue)
+                {
+                    Error = Error + "Item Price cannot exceed decimal max value";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for Item Price";
+            }
+
+
+            return Error;
         }
     }
 }
