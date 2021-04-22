@@ -4,15 +4,134 @@ namespace ClassLibrary
 {
     public class clsStock
     {
+        private int mProductId;
+        private string mProductName;
+        private string mProductDescription;
+        private int mInStock;
+        private DateTime mLastRestockDate;
+        private int mStockVariants;
+        private decimal mPrice;
+
+        public Int32 ProductId
+        {
+            get
+            {
+                return mProductId;
+            }
+            set
+            {
+                mProductId = value;
+            }
+
+        }
 
 
-        public string ProductDescription { get; set; }
-        public DateTime LastRestockDate { get; set; }
-        public string ProductName { get; set; }
-        public int InStock { get; set; }
-        public int ProductId { get; set; }
-        public decimal Price { get; set; }
-        public int StockVariants { get; set; }
+        public string ProductName
+        {
+            get
+            {
+                return mProductName;
+            }
+            set
+            {
+                mProductName = value;
+            }
+
+        }
+
+        public string ProductDescription
+        {
+            get
+            {
+                return mProductDescription;
+            }
+            set
+            {
+                mProductDescription = value;
+            }
+
+        }
+
+        public DateTime LastRestockDate
+        {
+            get
+            {
+                return mLastRestockDate;
+            }
+            set
+            {
+                mLastRestockDate = value;
+            }
+
+        }
+
+        public int StockVariants
+        {
+            get
+            {
+                return mStockVariants;
+            }
+            set
+            {
+                mStockVariants = value;
+            }
+
+        }
+
+        public decimal Price
+        {
+            get
+            {
+                return mPrice;
+            }
+            set
+            {
+                mPrice = value;
+            }
+
+        }
+
+        public int InStock
+        {
+            get
+            {
+                return mInStock;
+            }
+            set
+            {
+                mInStock = value;
+            }
+
+        }
+
+
+
+
+        public bool Find(int ProductId)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ProductId", ProductId);
+            DB.Execute("sproc_tblStocks_FilterByProductId");
+
+            if (DB.Count == 1)
+            {
+                mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductId"]);
+                mProductName = Convert.ToString(DB.DataTable.Rows[0]["ProductName"]);
+                mProductDescription = Convert.ToString(DB.DataTable.Rows[0]["ProductDescription"]);
+                mInStock = Convert.ToInt32(DB.DataTable.Rows[0]["InStock"]);
+                mLastRestockDate = Convert.ToDateTime(DB.DataTable.Rows[0]["LastRestockDate"]);
+                mStockVariants = Convert.ToInt32(DB.DataTable.Rows[0]["StockVariants"]);
+                mPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["Price"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
 
         public string Valid(int ProductId, string ProductDescription, int InStock, string ProductName, int StockVariants, DateTime LastRestockDate, decimal Price)
         {
