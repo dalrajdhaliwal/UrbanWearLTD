@@ -18,14 +18,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create new instance of clsOrder
         clsOrder AOrder = new clsOrder();
 
-        AOrder.ProductDescription = txtProductDescription.Text;
-        AOrder.CustomerAddress = txtCustomerAddress.Text;
-        AOrder.ItemColour = txtItemColour.Text;
-       // AOrder.OrderDate = txtOrderDate.Text;
-       // AOrder.OrderID = txtOrderID.Text;
-       // AOrder.CustomerNo = txtCustomerNo.Text;
-       // AOrder.ItemPrice = txtItemPrice.Text;
-       // AOrder.Availability = chkAvailability.Text;
+        string ProductDescription = txtProductDescription.Text;
+        string CustomerAddress = txtCustomerAddress.Text;
+        string ItemColour = txtItemColour.Text;
+        string OrderDate = txtOrderDate.Text;
+        string OrderID = txtOrderID.Text;
+        string CustomerNo = txtCustomerNo.Text;
+        string ItemPrice = txtItemPrice.Text;
+        string Error = "";
+        Error = AOrder.Valid(OrderID, CustomerNo, CustomerAddress, OrderDate, ItemPrice, ItemColour, ProductDescription);
+        if (Error == "")
+        {
+            //AOrder.OrderID = OrderID;
+            //AOrder.CustomerNo = CustomerNo;
+            AOrder.CustomerAddress = CustomerAddress;
+            AOrder.ProductDescription = ProductDescription;
+            //AOrder.OrderDate = OrderDate;
+            AOrder.ItemColour = ItemColour;
+            //AOrder.ItemPrice = ItemPrice;
+        }
 
 
         Session["AOrder"] = AOrder;

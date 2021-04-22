@@ -147,12 +147,14 @@ namespace ClassLibrary
         }
 
 
-        public string Valid(string customerNo, string customerAddress, string orderDate, string itemPrice, string itemColour, string productDescription)
+        public string Valid(string orderID, string customerNo, string customerAddress, string orderDate, string itemPrice, string itemColour, string productDescription)
         {
             String Error = "";
             DateTime OrderDateTemp;
             int CustomerNoTemp;
             Decimal ItemPriceTemp;
+            int orderIDTemp;
+
             if (productDescription.Length <1)
             {
                 Error = Error + "Product Description cannot be blank";
@@ -227,6 +229,22 @@ namespace ClassLibrary
                 Error = Error + "Invalid data for Item Price";
             }
 
+            try
+            {
+                orderIDTemp = Convert.ToInt32(orderID);
+                if (orderIDTemp < 1)
+                {
+                    Error = Error + "Order ID cannot be less than 1";
+                }
+                if (orderIDTemp > 500)
+                {
+                    Error = Error + "Order ID cannot exceed number 500";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for Order ID";
+            }
 
             return Error;
         }
