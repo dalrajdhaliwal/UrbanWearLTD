@@ -12,13 +12,13 @@
         </div>
         <asp:Label ID="lblOrderID" runat="server" Text="Order ID" width="121px"></asp:Label>
         <asp:TextBox ID="txtOrderID" runat="server" style="margin-left: 15px"></asp:TextBox>
-        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
+        <asp:Button ID="btnFind" runat="server" Text="Find" OnClick="btnFind_Click" />
         <br />
         <asp:Label ID="lblCustomerNo" runat="server" Text="Customer Number" width="121px"></asp:Label>
         <asp:TextBox ID="txtCustomerNo" runat="server" style="margin-left: 15px"></asp:TextBox>
         <br />
         <asp:Label ID="lblProductDescription" runat="server" Text="Product Description"></asp:Label>
-        <asp:TextBox ID="txtProductDescription" runat="server" style="margin-left: 15px"></asp:TextBox>
+        <asp:TextBox ID="txtProductDescription" runat="server" style="margin-left: 8px"></asp:TextBox>
         <br />
         <asp:Label ID="lblCustomerAddress" runat="server" Text="Customer Address" width="121px"></asp:Label>
         <asp:TextBox ID="txtCustomerAddress" runat="server" style="margin-left: 15px" ></asp:TextBox>

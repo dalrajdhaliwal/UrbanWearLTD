@@ -157,59 +157,59 @@ namespace ClassLibrary
 
             if (productDescription.Length <1)
             {
-                Error = Error + "Product Description cannot be blank";
+                Error = Error + "Product Description cannot be blank: ";
             }
         if (productDescription.Length > 50)
             {
-                Error = Error + "Product Description cannot exceed 50 chars";
+                Error = Error + "Product Description cannot exceed 50 chars: ";
             }
         if (customerAddress.Length<1)
             {
-                Error = Error + "Customer Address cannot be blank";
+                Error = Error + "Customer Address cannot be blank: ";
             }
         if (customerAddress.Length > 25)
             {
-                Error = Error + "Customer Address cannot exceed 25 chars";
+                Error = Error + "Customer Address cannot exceed 25 chars:";
             }
         if (itemColour.Length < 3)
             {
-                Error = Error + "Item Colour cannot be less than 3 chars as the shortest colour name is red";
+                Error = Error + "Item Colour cannot be less than 3 chars as the shortest colour name is red: ";
             }
         if (itemColour.Length > 10)
             {
-                Error = Error + "Item Colour cannot exceed 10 chars";
+                Error = Error + "Item Colour cannot exceed 10 chars:";
             }
         try
             {
                 OrderDateTemp = Convert.ToDateTime(orderDate);
                 if (OrderDateTemp <= DateTime.Now.AddYears(-2).AddDays(-1))
                 {
-                    Error = Error + "Orders older than 2 years cannot be proccessed";
+                    Error = Error + "Orders older than 2 years cannot be proccessed: ";
                 }
                 if (OrderDateTemp > DateTime.Now)
                 {
-                    Error = Error + "Order date cannot be in the future";
+                    Error = Error + "Order date cannot be in the future: ";
                 }
             }
         catch
             {
-                Error = Error + "Invalid data for date";
+                Error = Error + "Invalid data for date: ";
             }
             try
             {
                 CustomerNoTemp = Convert.ToInt32(customerNo);
                 if (CustomerNoTemp <1)
                 {
-                    Error = Error + "Customer Number cannot be 0";
+                    Error = Error + "Customer Number cannot be 0: ";
                 }
                 if (CustomerNoTemp > 1000)
                 {
-                    Error = Error + "Customer Number cannot be more than 1000";
+                    Error = Error + "Customer Number cannot be more than 1000: ";
                 }
             }
             catch
             {
-                Error = Error + "Invalid data for Customer Number";
+                Error = Error + "Invalid data for Customer Number: ";
             }
 
             try
@@ -217,16 +217,16 @@ namespace ClassLibrary
                 ItemPriceTemp = Convert.ToDecimal(itemPrice);
                 if (ItemPriceTemp < 1)
                 {
-                    Error = Error + "Item Price cannot be less than 1";
+                    Error = Error + "Item Price cannot be less than 1: ";
                 }
                 if (ItemPriceTemp > decimal.MaxValue)
                 {
-                    Error = Error + "Item Price cannot exceed decimal max value";
+                    Error = Error + "Item Price cannot exceed decimal max value: ";
                 }
             }
             catch
             {
-                Error = Error + "Invalid data for Item Price";
+                Error = Error + "Invalid data for Item Price: ";
             }
 
             try
@@ -234,16 +234,16 @@ namespace ClassLibrary
                 orderIDTemp = Convert.ToInt32(orderID);
                 if (orderIDTemp < 1)
                 {
-                    Error = Error + "Order ID cannot be less than 1";
+                    Error = Error + "Order ID cannot be less than 1: ";
                 }
                 if (orderIDTemp > 500)
                 {
-                    Error = Error + "Order ID cannot exceed number 500";
+                    Error = Error + "Order ID cannot exceed number 500: ";
                 }
             }
             catch
             {
-                Error = Error + "Invalid data for Order ID";
+                Error = Error + "Invalid data for Order ID:";
             }
 
             return Error;
