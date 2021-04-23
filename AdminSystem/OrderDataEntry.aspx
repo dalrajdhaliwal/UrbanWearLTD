@@ -32,6 +32,9 @@
         <asp:Label ID="lblItemColour" runat="server" Text="Item Colour" width="121px"></asp:Label>
         <asp:TextBox ID="txtItemColour" runat="server" style="margin-left: 15px"></asp:TextBox>
         <br />
+         <asp:Label ID="lblStaffID" runat="server" Text="StaffID" width="121px"></asp:Label>
+        <asp:TextBox ID="txtStaffID" runat="server" style="margin-left: 15px"></asp:TextBox>
+        <br />
         <asp:CheckBox ID="chkAvailability" runat="server" Text="Availability" />
         <br />
         <br />

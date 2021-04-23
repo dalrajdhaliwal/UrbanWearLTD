@@ -8,9 +8,33 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderID = Convert.ToInt32(Session["OrderID"]);
+        if (IsPostBack == false)
+        {
+            if (OrderID != -1)
+            {
+                DisplayOrder();
+            }
+        }
+    }
 
+    private void DisplayOrder()
+    {
+        clsOrderCollection OrderBook = new clsOrderCollection();
+        OrderBook.ThisOrder.Find(OrderID);
+        //display data for the record
+        txtOrderID.Text = OrderBook.ThisOrder.OrderID.ToString();
+        txtCustomerNo.Text = OrderBook.ThisOrder.CustomerNo.ToString();
+        txtCustomerAddress.Text = OrderBook.ThisOrder.CustomerAddress;
+        txtItemColour.Text = OrderBook.ThisOrder.ItemColour;
+        txtItemPrice.Text = OrderBook.ThisOrder.ItemPrice.ToString();
+        txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
+        txtProductDescription.Text = OrderBook.ThisOrder.ProductDescription;
+        txtStaffID.Text = OrderBook.ThisOrder.ToString();
+        chkAvailability.Checked = OrderBook.ThisOrder.Availability;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -23,9 +47,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string ItemPrice = txtItemPrice.Text;
         string OrderDate = txtOrderDate.Text;
         string ProductDescription = txtProductDescription.Text;
+        string StaffID = txtStaffID.Text;
         string Error = "";
 
-        Error = AOrder.Valid(OrderID, CustomerNo, CustomerAddress, OrderDate, ItemPrice, ItemColour, ProductDescription);
+        Error = AOrder.Valid(OrderID, CustomerNo, CustomerAddress, OrderDate, ItemPrice, ItemColour, ProductDescription, StaffID);
 
         if (Error == "")
 
@@ -38,11 +63,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AOrder.OrderDate = Convert.ToDateTime(OrderDate);
             AOrder.ProductDescription = txtProductDescription.Text;
             AOrder.Availability = chkAvailability.Checked;
-            Session["AOrder"] = AOrder;
-            Response.Redirect("OrderViewer.aspx");
+            AOrder.StaffID = Convert.ToInt32(StaffID);
+            clsOrderCollection OrderList = new clsOrderCollection();
+            if (Convert.ToInt32(OrderID) == -1)
+            {
+                OrderList.ThisOrder = AOrder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(Convert.ToInt32(OrderID));
+                OrderList.ThisOrder = AOrder;
+                OrderList.Update();
+
+            }
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
+            //display error message
             lblError.Text = Error;
         }
     }
@@ -63,11 +102,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtItemPrice.Text = AOrder.ItemPrice.ToString();
             txtOrderDate.Text = AOrder.OrderDate.ToString();
             txtProductDescription.Text = AOrder.ProductDescription;
+            txtStaffID.Text = AOrder.StaffID.ToString();
             chkAvailability.Checked = AOrder.Availability;
 
 
 
         }
+
 
     }
 }

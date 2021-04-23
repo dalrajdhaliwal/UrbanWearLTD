@@ -18,5 +18,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("ItemPrice: " + AOrder.ItemPrice + "<br/>");
         Response.Write("OrderDate: " + AOrder.OrderDate + "<br/>");
         Response.Write("ProductDescription: " + AOrder.ProductDescription + "<br/>");
+        Response.Write("StaffID: " + AOrder.StaffID + "<br/>");
     }
 }

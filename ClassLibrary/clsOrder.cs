@@ -5,6 +5,7 @@ namespace ClassLibrary
     public class clsOrder
     {
         private Int32 mOrderID;
+        private Int32 mStaffID;
         private int mCustomerNo;
         private string mCustomerAddress;
         private DateTime mOrderDate;
@@ -27,6 +28,20 @@ namespace ClassLibrary
             }
 
         }
+
+        public Int32 StaffID
+        {
+            get
+            {
+                return mStaffID;
+            }
+            set
+            {
+                mStaffID = value;
+            }
+
+        }
+
 
 
         public Int32 CustomerNo
@@ -138,6 +153,7 @@ namespace ClassLibrary
                 mAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Availability"]);
                 mItemColour = Convert.ToString(DB.DataTable.Rows[0]["ItemColour"]);
                 mItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 return true;
             }
             else
@@ -147,13 +163,14 @@ namespace ClassLibrary
         }
 
 
-        public string Valid(string orderID, string customerNo, string customerAddress, string orderDate, string itemPrice, string itemColour, string productDescription)
+        public string Valid(string orderID, string customerNo, string customerAddress, string orderDate, string itemPrice, string itemColour, string productDescription, string staffID)
         {
             String Error = "";
             DateTime OrderDateTemp;
             int CustomerNoTemp;
             Decimal ItemPriceTemp;
             int orderIDTemp;
+            int StaffIDTemp;
 
             if (productDescription.Length <1)
             {
@@ -245,6 +262,24 @@ namespace ClassLibrary
             {
                 Error = Error + "Invalid data for Order ID:";
             }
+
+            try
+            {
+                StaffIDTemp = Convert.ToInt32(staffID);
+                if (StaffIDTemp < 1)
+                {
+                    Error = Error + "Staff ID cannot be less than 1: ";
+                }
+                if (StaffIDTemp > 20)
+                {
+                    Error = Error + "Staff ID cannot exceed 20: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for Staff ID:";
+            }
+
 
             return Error;
         }
