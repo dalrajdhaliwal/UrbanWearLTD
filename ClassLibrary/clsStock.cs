@@ -4,13 +4,13 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        private int mProductId;
-        private string mProductName;
-        private string mProductDescription;
-        private int mInStock;
-        private DateTime mLastRestockDate;
-        private int mStockVariants;
-        private decimal mPrice;
+         int mProductId;
+         string mProductName;
+         string mProductDescription;
+         int mInStock;
+         DateTime mLastRestockDate;
+         int mStockVariants;
+         decimal mPrice;
 
         public Int32 ProductId
         {
@@ -130,72 +130,121 @@ namespace ClassLibrary
             }
         }
 
-
-
-
-        public string Valid(int ProductId, string ProductDescription, int InStock, string ProductName, int StockVariants, DateTime LastRestockDate, decimal Price)
+        public string Valid(string productId, string productDescription, string inStock, string lastRestockDate, string price, string productName, string stockVariants)
         {
-            if (ProductId < 1)
+            String Error = "";
+            DateTime LastRestockDateTemp;
+            int InStockTemp;
+            Decimal PriceTemp;
+            int ProductIdTemp;
+            int StockVariantsTemp;
+
+            if (productDescription.Length < 1)
             {
-                return "ProductId cannot be less than 1";
+                Error = Error + "Product Description cannot be blank: ";
             }
-            else if (ProductId > 50)
+            if (productDescription.Length > 100)
             {
-                return "ProductId cannot exceed the set max of 500";
+                Error = Error + "Product Description cannot exceed 100 chars: ";
+            }
+            if (productName.Length < 1)
+            {
+                Error = Error + "ProductName cannot be blank: ";
+            }
+            if (productName.Length > 35)
+            {
+                Error = Error + "Product Name cannot exceed 35 chars: ";
+            }
+            try
+            {
+                LastRestockDateTemp = Convert.ToDateTime(lastRestockDate);
+                if (LastRestockDateTemp <= DateTime.Now.AddYears(-1).AddDays(-1))
+                {
+                    Error = Error + "LastRestockDate need to be within a year: ";
+                }
+                if (LastRestockDateTemp > DateTime.Now)
+                {
+                    Error = Error + "LastRestockDate  can’t be in the future: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for date: ";
+            }
+            try
+            {
+                ProductIdTemp = Convert.ToInt32(productId);
+                if (ProductIdTemp < 1)
+                {
+                    Error = Error + "Product Id cannot be 0: ";
+                }
+                if (ProductIdTemp > 50)
+                {
+                    Error = Error + "Product Id cannot be more than 50: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "Invalid data for ProductId: ";
             }
 
-            else if (ProductDescription.Length < 1)
+            try
             {
-                return "Product Description cannot be blank";
+                PriceTemp = Convert.ToDecimal(price);
+                if (PriceTemp < 1)
+                {
+                    Error = Error + "Price cannot be less than 1: ";
+                }
+                if (PriceTemp > decimal.MaxValue)
+                {
+                    Error = Error + "Price cannot exceed decimal max value: ";
+                }
             }
-            else if (ProductDescription.Length > 100)
+            catch
             {
-                return "Product Description cannot exceed 100 chars";
+                Error = Error + "Invalid data for Price: ";
             }
-            else if (InStock < 1)
+
+            try
             {
-                return "InStock amount cannot be 0";
+                InStockTemp = Convert.ToInt32(inStock);
+                if (InStockTemp < 1)
+                {
+                    Error = Error + "InStock amount can’t be 0: ";
+                }
+                if (InStockTemp > 100)
+                {
+                    Error = Error + "InStock amount can’t exceed 100: ";
+                }
             }
-            else if (InStock > 100)
+            catch
             {
-                return "InStock amount cannot be more than 1000";
+                Error = Error + "Invalid data for InStock: ";
             }
-            else if (ProductName.Length < 1)
+
+            try
             {
-                return "Product Name cannot be blank";
+                StockVariantsTemp = Convert.ToInt32(stockVariants);
+                if (StockVariantsTemp < 1)
+                {
+                    Error = Error + "Stock Variants cannot be less than 1: ";
+                }
+                if (StockVariantsTemp > 300)
+                {
+                    Error = Error + "Stock Variants cannot exceed 300: ";
+                }
             }
-            else if (ProductName.Length >= 36)
+            catch
             {
-                return "Product Name cannot exceed 35 chars";
+                Error = Error + "Invalid data for Stock Variants: ";
             }
-            else if (StockVariants < 1)
-            {
-                return "StockVariety cannot be less than 1";
-            }
-            else if (StockVariants > 300)
-            {
-                return "StockVariety cannot exceed be less than 300";
-            }
-            else if (LastRestockDate <= DateTime.Now.AddYears(-1).AddDays(-1))
-            {
-                return "LastRestockDate need to be within a year";
-            }
-            else if (LastRestockDate > DateTime.Now)
-            {
-                return "LastRestockDate  cannot be tomorrow";
-            }
-            else if (Price < 1)
-            {
-                return "Price cannot be less than 0.1";
-            }
-            else if (Price > decimal.MaxValue)
-            {
-                return "Price cannot be higher than the max value available for decimals";
-            }
-            else
-            {
-                return "";
-            }
+
+
+            return Error;
         }
+
+
+
+
     }
 }
