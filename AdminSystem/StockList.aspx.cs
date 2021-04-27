@@ -56,7 +56,7 @@ public partial class _1_List : System.Web.UI.Page
         {
             ProductId = Convert.ToInt32(lstStock.SelectedValue);
             Session["ProductId"] = ProductId;
-            Response.Redirect("StockConfirmDelete.aspx");
+            Response.Redirect("StockDelete.aspx");
         }
         else
         {

@@ -20,7 +20,7 @@
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" BackColor="#AAE3FF" />
         <br />
         <br />
-        Enter a Produc Name
+        Enter a Product Name
         <asp:TextBox ID="txtFilter" runat="server" BorderColor="#3399FF"></asp:TextBox>
         <br />
         <br />
