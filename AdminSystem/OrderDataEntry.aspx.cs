@@ -33,7 +33,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtItemPrice.Text = OrderBook.ThisOrder.ItemPrice.ToString();
         txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
         txtProductDescription.Text = OrderBook.ThisOrder.ProductDescription;
-        txtStaffID.Text = OrderBook.ThisOrder.ToString();
+        txtStaffID.Text = OrderBook.ThisOrder.StaffID.ToString();
         chkAvailability.Checked = OrderBook.ThisOrder.Availability;
     }
 
@@ -110,5 +110,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
 
 
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderList.aspx");
     }
 }
