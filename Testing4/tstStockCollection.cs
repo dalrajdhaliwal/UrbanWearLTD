@@ -168,14 +168,10 @@ namespace Testing4
         {
             clsStockCollection FilteredStocks = new clsStockCollection();
             Boolean OK = true;
-            FilteredStocks.FilterByProductName("shoe");
-            if (FilteredStocks.Count == 2)
+            FilteredStocks.FilterByProductName("aa");
+            if (FilteredStocks.Count == 1)
             {
                 if (FilteredStocks.StockList[0].ProductId != 1)
-                {
-                    OK = false;
-                }
-                if (FilteredStocks.StockList[1].ProductId != 2)
                 {
                     OK = false;
                 }

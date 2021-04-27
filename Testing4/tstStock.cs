@@ -724,7 +724,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.ProductName != ("shoe"))
+            if (AStock.ProductName != ("aa"))
             {
                 Ok = false;
             }
@@ -740,7 +740,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.LastRestockDate != Convert.ToDateTime("17/01/2021"))
+            if (AStock.LastRestockDate != Convert.ToDateTime("19/03/2021"))
             {
                 Ok = false;
             }
@@ -755,7 +755,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.InStock != 34)
+            if (AStock.InStock != 5)
             {
                 Ok = false;
             }
@@ -770,7 +770,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.StockVariants != 234)
+            if (AStock.StockVariants != 2)
             {
                 Ok = false;
             }
@@ -786,7 +786,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.Price != 1)
+            if (AStock.Price != 5)
             {
                 Ok = false;
             }
@@ -802,7 +802,7 @@ namespace Testing4
             Boolean Ok = true;
             int ProductId = 1;
             Found = AStock.Find(ProductId);
-            if (AStock.ProductDescription != "a green product")
+            if (AStock.ProductDescription != "aa")
             {
                 Ok = false;
             }

@@ -185,16 +185,13 @@ namespace Testing3
             clsOrderCollection FilteredOrders = new clsOrderCollection();
             Boolean OK = true;
             FilteredOrders.FilterByCustomerAddress("37");
-            if (FilteredOrders.Count == 2)
+            if (FilteredOrders.Count == 1)
             {
                 if (FilteredOrders.OrderList[0].OrderID != 6)
                 {
                     OK = false;
                 }
-                if (FilteredOrders.OrderList[1].OrderID != 7)
-                {
-                    OK = false;
-                }
+                
             }
             else
             {
