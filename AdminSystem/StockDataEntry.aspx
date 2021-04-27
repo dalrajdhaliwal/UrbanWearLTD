@@ -50,9 +50,9 @@
         <asp:Label ID="lblError" runat="server"></asp:Label>
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnOK" runat="server" BackColor="#7BFF7B" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" BackColor="#7BFF7B" Text="OK" OnClick="btnOK_Click" />
 &nbsp;
-        <asp:Button ID="btnCancel" runat="server" BackColor="#FF5B5B" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" BackColor="#FF5B5B" Text="Cancel" OnClick="btnCancel_Click" />
         
     </form>
 </body>
