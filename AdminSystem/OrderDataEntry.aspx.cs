@@ -65,7 +65,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AOrder.Availability = chkAvailability.Checked;
             AOrder.StaffID = Convert.ToInt32(StaffID);
             clsOrderCollection OrderList = new clsOrderCollection();
-            if (Convert.ToInt32(OrderID) == -1)
+            if (this.OrderID== -1)
             {
                 OrderList.ThisOrder = AOrder;
                 OrderList.Add();
