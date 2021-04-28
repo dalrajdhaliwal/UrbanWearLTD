@@ -77,7 +77,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStock.LastRestockDate = Convert.ToDateTime(txtLastRestockDate.Text);
             AStock.StockVariants = Convert.ToInt32(StockVariants);
             clsStockCollection StockList = new clsStockCollection();
-            if (Convert.ToInt32(ProductId) == -1)
+            if (this.ProductId == -1)
             {
                 StockList.ThisStock = AStock;
                 StockList.Add();
