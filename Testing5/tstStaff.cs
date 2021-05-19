@@ -126,6 +126,8 @@ namespace Testing6
             }
         }
         private Boolean mShift;
+        private bool OK;
+
         public Boolean Shift
         {
             get
@@ -140,13 +142,68 @@ namespace Testing6
         }
         [TestMethod]
         public void FindMethodOK()
-
+        {
             clsStaff AnStaff = new clsStaff();
             Boolean Found = false;
-         int2 StaffId = 21;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            Assert.IsTrue(Found);
-
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestDateStartedFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Int32 StaffId = 1;
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.DateStarted != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateEndedFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            DateTime DateEnded = Convert.ToDateTime("16/09/2019");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.DateEnded != Convert.ToDateTime("01/12/2018"))
+            {
+                OK = false;
+            }
+        }
+        [TestMethod]
+        public void TestStaffFirstName()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            String Name = Convert.ToString("Nabira");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.StaffFirstName != Convert.ToString("Kim"))
+            {
+                OK = false;
+            }
+        }
+        [TestMethod]
+        public void TestStaffLastName()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            String StaffLastName = Convert.ToString("Peter");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.StaffLastName != Convert.ToString("Amir"))
+            {
+                OK = false;
+            }
+        }
 
 
         //public DateTime DateTemp { get; private set; }
