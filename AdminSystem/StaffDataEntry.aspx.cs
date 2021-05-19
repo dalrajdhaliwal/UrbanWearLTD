@@ -10,15 +10,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        clsStaff AnStaff = new clsStaff();
+        AnStaff = (clsStaff)Session["AnStaff"];
+        Response.Write(AnStaff.StaffFirstName);
 
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance if clsStaff
+        
         clsStaff AnStaff = new clsStaff();
-        // capture the house 
-        //navigate to the viewer page
+      
         Response.Redirect("StaffViewer.aspx");
         
     }
@@ -29,4 +31,6 @@ public class clsStaff
     public clsStaff()
     {
     }
+
+    public string StaffFirstName { get; internal set; }
 }
