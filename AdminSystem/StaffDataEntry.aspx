@@ -15,8 +15,7 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="lblStaffFirstName" runat="server" Text="StaffFirstName" width="66px"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" style="margin-left: 101px" 
-            OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" style="margin-left: 101px"></asp:TextBox>
         <br />
         <asp:Label ID="lblStaffLastName" runat="server" Text="StaffLastName" width="168px"></asp:Label>
         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
@@ -58,7 +57,7 @@
         <br />
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
 &nbsp;
-        <asp:Button ID="btnCancel" runat="server" OnClick="Button1_Click" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
     </form>
 </body>
 </html>
