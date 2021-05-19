@@ -15,16 +15,17 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="lblStaffFirstName" runat="server" Text="StaffFirstName" width="66px"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" style="margin-left: 101px"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" style="margin-left: 101px" 
+            OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
         <br />
         <asp:Label ID="lblStaffLastName" runat="server" Text="StaffLastName" width="168px"></asp:Label>
         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblSex" runat="server" Text="Sex" width="66px"></asp:Label>
+        <asp:Label ID="lblSalary" runat="server" Text="Salary" width="66px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblDateOfBirth" runat="server" Text="DateOfBirth" width="66px"></asp:Label>
+        <asp:Label ID="lblDateStarted" runat="server" Text="DateStarted" width="66px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
         <br />
@@ -43,6 +44,10 @@
         <asp:Label ID="lblShift" runat="server" Text="Shift" width="66px"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+        <br />
+        <asp:Label ID="lblDateEnded" runat="server" Text="DateEnded"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
         <br />
         <br />
         <asp:CheckBox ID="chkActive" runat="server" Text="Active" />
