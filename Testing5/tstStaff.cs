@@ -1,12 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
+using Class_Library;
 
 
 namespace Testing6
 {
-
-
     [TestClass]
     public class tstStaff
     {
@@ -25,145 +23,96 @@ namespace Testing6
         public DateTime mDateStarted { get; private set; }
         public string mName { get; private set; }
         public bool Found { get; private set; }
-
-public bool OK { get; private set; }
+        public bool OK { get; private set; }
         public object name { get; private set; }
 
-        public class clsStaff   
-    {
-        private String mStaffLastName;
-        public string StaffLastName
+        [TestMethod]
+        public void InstanceOK()
         {
-
-            get
-            {
-                return mStaffLastName;
-
-            }
-            set
-            {
-                mStaffLastName = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            Assert.IsNotNull(AnStaff);
         }
-
-        private String mContactNumber;
-        public string ContactNumber
+       
+        [TestMethod]
+        public void ShiftPropertyOK()
         {
-            get
-            {
-                return mContactNumber;
-            }
-
-            set
-            {
-                mContactNumber = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            Boolean TestData = true;
+            AnStaff.Shift = TestData;
+            Assert.AreEqual(AnStaff.Shift, TestData);
         }
-        private DateTime mDateEnded;
-        public DateTime DateEnded
+        [TestMethod]
+        public void DateStartedPropertyOK()
         {
-            get
-            {
-                return mDateEnded;
-            }
-
-            set
-            {
-                mDateEnded = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            DateTime TestData = DateTime.Now.Date;
+            AnStaff.DateStarted = TestData;
+            Assert.AreEqual(AnStaff.DateStarted, TestData);
         }
-
-        private String mStaffFirstName;
-        public string StaffFirstName
+        [TestMethod]
+        public void DateEndedPropertyOK()
         {
-            get
-            {
-                return mStaffFirstName;
-
-            }
-            set
-            {
-                mStaffFirstName = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            DateTime TestData = DateTime.Now.Date;
+            AnStaff.DateEnded = TestData;
+            Assert.AreEqual(AnStaff.DateEnded, TestData);
         }
-        private Decimal mSalary;
-        public decimal Salary
+        [TestMethod]
+        public void StaffFirstNamePropertyOK()
         {
-            get
-            {
-                return mSalary;
-            }
-            set
-            {
-                mSalary = value;
-            }
+            clsStaff anStaff = new clsStaff();
+            string TestData = "Courage";
+            anStaff.StaffFirstName = TestData;
+            Assert.AreEqual(anStaff.StaffFirstName, TestData);
         }
-
-        private Int32 mStaffId;
-        public Int32 StaffId
+        [TestMethod]
+        public void StaffLastNamePropertyOK()
         {
-            get
-            {
-                return mStaffId;
-            }
-            set
-            {
-                mStaffId = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            string TestData = "Eguavoen";
+            AnStaff.StaffLastName = TestData;
+            Assert.AreEqual(AnStaff.StaffLastName, TestData);
         }
-        private DateTime mDateStarted;
-        public DateTime DateStarted
+        [TestMethod]
+        public void SalaryPropertyOK()
         {
-            get
-            {
-                return mDateStarted;
-            }
-
-            set
-            {
-                mDateStarted = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            Decimal TestData = 10.50m;
+            AnStaff.Salary = TestData;
+            Assert.AreEqual(AnStaff.Salary, TestData);
         }
-        private String mNINumber;
-        public string NINumber
+        [TestMethod]
+        public void StaffIdPropertOK()
         {
-            get
-            {
-                return mNINumber;
+            clsStaff AnStaff = new clsStaff();
+            int TestData = 001;
+            AnStaff.StaffId = TestData;
+            Assert.AreEqual(AnStaff.StaffId, TestData);
 
-            }
-            set
-            {
-                mNINumber = value;
-            }
         }
-        private String mTaxCode;
-        public string TaxCode
+        [TestMethod]
+        public void ContactNumberPropertyOK()
         {
-            get
-            {
-                return mTaxCode;
-
-            }
-            set
-            {
-                mTaxCode = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            string TestData = "076543672";
+            AnStaff.ContactNumber = TestData;
+            Assert.AreEqual(AnStaff.ContactNumber, TestData);
         }
-        private Boolean mShift;
-        private bool OK;
-
-        public Boolean Shift
+        [TestMethod]
+        public void TaxCodePropertyOK()
         {
-            get
-            {
-                return mShift;
-
-            }
-            set
-            {
-                mShift = value;
-            }
+            clsStaff AnStaff = new clsStaff();
+            string TestData = "P56";
+            AnStaff.TaxCode = TestData;
+            Assert.AreEqual(AnStaff.TaxCode, TestData);
+        }
+        [TestMethod]
+        public void NINumberPropertyOK()
+        {
+            clsStaff AnStaff = new clsStaff();
+            string TestData = "1234234";
+            AnStaff.NINumber = TestData;
+            Assert.AreEqual(AnStaff.NINumber, TestData);
         }
         [TestMethod]
         public void FindMethodOK()
@@ -172,157 +121,118 @@ public bool OK { get; private set; }
             Boolean Found = false;
             Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Found);
+            Assert.IsTrue(Found);
         }
-
-        private bool Find(int staffId)
-        {
-            throw new NotImplementedException();
-        }
-
         [TestMethod]
         public void TestDateStartedFound()
         {
             clsStaff AnStaff = new clsStaff();
             Boolean Found = false;
+            Boolean OK = true;
             Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
             if (AnStaff.DateStarted != Convert.ToDateTime("16/09/2015"))
             {
                 OK = false;
             }
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(OK);
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestDateEndedFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            DateTime DateEnded = Convert.ToDateTime("16/09/2019");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
             if (AnStaff.DateEnded != Convert.ToDateTime("01/12/2018"))
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
-        public void TestStaffFirstName()
+        public void TestStaffFirstNameFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            String Name = Convert.ToString("Nabira");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            if (AnStaff.StaffFirstName != Convert.ToString("Kim"))
+            if (AnStaff.StaffFirstName != "Courage")
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestStaffLastNameFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            String StaffLastName = Convert.ToString("Peter");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            if (AnStaff.StaffLastName != Convert.ToString("Amir"))
+            if (AnStaff.StaffLastName != "Eguavoen")
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestContactNumberFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            String ContactNumber = Convert.ToString("0765489");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            if (AnStaff.ContactNumber != Convert.ToString("0827630"))
+            if (AnStaff.ContactNumber != "07543234")
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestTaxCodeFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            String TaxCode = Convert.ToString("0765489");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            if (AnStaff.TaxCode != Convert.ToString("M98"))
+            if (AnStaff.TaxCode != "P56")
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestNINumberFound()
         {
             clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            Int32 StaffId = 4;
-            String NINumber = Convert.ToString("0765489");
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            if (AnStaff.NINumber != Convert.ToString("8765434"))
+            if (AnStaff.NINumber != "8765438")
             {
                 OK = false;
             }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestShiftFound()
         {
             clsStaff AnStaff = new clsStaff();
             Boolean Found = false;
-            Boolean OK = true;
+
             Int32 StaffId = 4;
             Found = AnStaff.Find(StaffId);
             if (AnStaff.Shift != true)
             {
-                OK = false;
             }
         }
-
-
-        [TestMethod]
-        public void TestSalaryFound()
-        {
-            clsStaff AnStaff = new clsStaff();
-            bool Found = false;
-            bool OK = true;
-            String Salary = Convert.ToString("124 College green");
-            Int32 StaffId = 4;
-            Found = AnStaff.Find(StaffId);
-            if (AnStaff.Salary != Convert.ToDecimal("1266.00"))
-            {
-                OK = false;
-            }
-        }
-
-            internal string Valid(string staffLastName, string staffFirstName, string nINumber, string dateStarted, string taxCode, string contactNumber, string dateEnded)
-            {
-                throw new NotImplementedException();
-            }
-        }
-    [TestMethod]
-    public void ValidMethodOk()
-    {
-        clsStaff AnStaff = new clsStaff();
-        String Error = "";
-        Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
-        Assert.AreEqual(Error, "");
-        {
-            OK = false;
-        }
-    }
 
         [TestMethod]
         public void StaffLastNameMin()
@@ -836,7 +746,7 @@ public bool OK { get; private set; }
             Assert.AreNotEqual(Error, "");
 
         }
-      
+
         [TestMethod]
         public void TaxCodeMinLessOne()
         {
@@ -934,20 +844,20 @@ public bool OK { get; private set; }
 
         }
 
-
+    
         public string Valid(string StaffFirstName, string StaffLastName, string NINumber, string dateStarted, string dateEnded, string TaxCode, string ContactNumber)
         {
             {
                 string Error = "";
                 DateTime DateTemp;
-                if (name.Length == 0)
+                if (StaffFirstName.Length == 0)
 
                 {
 
                     Error = Error + "The name may not be blank: ";
                 }
 
-                if (name.Length > 50)
+                if (StaffFirstName.Length > 50)
                 {
                     Error = Error + "The name must be less than 50 characters";
                 }
@@ -1001,33 +911,6 @@ public bool OK { get; private set; }
         }
     }
 
-    //public DateTime DateTemp { get; private set; }
-
-    public bool Find(int StaffId)
-    {
-        clsDataConnection DB = new clsDataConnection();
-        DB.AddParameter("@StaffId", StaffId);
-        DB.Execute("sproc_tblStaff_FilterByStaffId");
-        if (DB.Count == 1)
-        {
-            mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
-            mDateStarted = Convert.ToDateTime(DB.DataTable.Rows[0]["DateStarted"]);
-            mDateEnded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateEnded"]);
-            mStaffFirstName = Convert.ToString(DB.DataTable.Rows[0]["StaffFirstName"]);
-            mStaffLastName = Convert.ToString(DB.DataTable.Rows[0]["StaffLastName"]);
-            mContactNumber = Convert.ToString(DB.DataTable.Rows[0]["ContactNumber"]);
-            mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
-            mTaxCode = Convert.ToString(DB.DataTable.Rows[0]["TaxCode"]);
-            mNINumber = Convert.ToString(DB.DataTable.Rows[0]["NINumber"]);
-            mShift = Convert.ToBoolean(DB.DataTable.Rows[0]["Shift"]);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }
 }
 
 
