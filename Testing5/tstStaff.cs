@@ -1,10 +1,34 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 
 
 namespace Testing6
 {
-    public class clsStaff
+
+
+    [TestClass]
+    public class tstStaff
+    {
+        //private int mStaff;
+
+        //good test data
+        String StaffFirstName = "Kim";
+        String StaffLastName = "Amir";
+        String TaxCode = "P56";
+        String NINumber = "P56";
+        String ContactNumber = "0765432";
+        String DateStarted = DateTime.Now.Date.ToString();
+        String DateEnded = DateTime.Now.Date.ToString();
+
+
+        public DateTime mDateStarted { get; private set; }
+        public string mName { get; private set; }
+        public bool Found { get; private set; }
+
+public bool OK { get; private set; }
+
+        public class clsStaff   
     {
         private String mStaffLastName;
         public string StaffLastName
@@ -149,6 +173,12 @@ namespace Testing6
             Found = AnStaff.Find(StaffId);
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Found);
         }
+
+        private bool Find(int staffId)
+        {
+            throw new NotImplementedException();
+        }
+
         [TestMethod]
         public void TestDateStartedFound()
         {
@@ -191,7 +221,7 @@ namespace Testing6
             }
         }
         [TestMethod]
-        public void TestStaffLastName()
+        public void TestStaffLastNameFound()
         {
             clsStaff AnStaff = new clsStaff();
             bool Found = false;
@@ -204,11 +234,98 @@ namespace Testing6
                 OK = false;
             }
         }
+        [TestMethod]
+        public void TestContactNumberFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            String ContactNumber = Convert.ToString("0765489");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.ContactNumber != Convert.ToString("0827630"))
+            {
+                OK = false;
+            }
+        }
+        [TestMethod]
+        public void TestTaxCodeFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            String TaxCode = Convert.ToString("0765489");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.TaxCode != Convert.ToString("M98"))
+            {
+                OK = false;
+            }
+        }
+        [TestMethod]
+        public void TestNINumberFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            Int32 StaffId = 4;
+            String NINumber = Convert.ToString("0765489");
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.NINumber != Convert.ToString("8765434"))
+            {
+                OK = false;
+            }
+        }
+        [TestMethod]
+        public void TestShiftFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 4;
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.Shift != true)
+            {
+                OK = false;
+            }
+        }
 
 
-        //public DateTime DateTemp { get; private set; }
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            bool Found = false;
+            bool OK = true;
+            String Salary = Convert.ToString("124 College green");
+            Int32 StaffId = 4;
+            Found = AnStaff.Find(StaffId);
+            if (AnStaff.Salary != Convert.ToDecimal("1266.00"))
+            {
+                OK = false;
+            }
+        }
 
-        public bool Find(int StaffId)
+            internal string Valid(string staffLastName, string staffFirstName, string nINumber, string dateStarted, string taxCode, string contactNumber, string dateEnded)
+            {
+                throw new NotImplementedException();
+            }
+        }
+    [TestMethod]
+    public void ValidMethodOk()
+    {
+        clsStaff AnStaff = new clsStaff();
+        String Error = "";
+        Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+        Assert.AreEqual(Error, "");
+        {
+            OK = false;
+        }
+    }
+
+    //public DateTime DateTemp { get; private set; }
+
+    public bool Find(int StaffId)
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@StaffId", StaffId);
