@@ -27,6 +27,7 @@ namespace Testing6
         public bool Found { get; private set; }
 
 public bool OK { get; private set; }
+        public object name { get; private set; }
 
         public class clsStaff   
     {
@@ -323,33 +324,616 @@ public bool OK { get; private set; }
         }
     }
 
-    //public DateTime DateTemp { get; private set; }
-
-    public bool Find(int StaffId)
+        [TestMethod]
+        public void StaffLastNameMin()
         {
-            clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@StaffId", StaffId);
-            DB.Execute("sproc_tblStaff_FilterByStaffId");
-            if (DB.Count == 1)
-            {
-                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
-                mDateStarted = Convert.ToDateTime(DB.DataTable.Rows[0]["DateStarted"]);
-                mDateEnded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateEnded"]);
-                mStaffFirstName = Convert.ToString(DB.DataTable.Rows[0]["StaffFirstName"]);
-                mStaffLastName = Convert.ToString(DB.DataTable.Rows[0]["StaffLastName"]);
-                mContactNumber = Convert.ToString(DB.DataTable.Rows[0]["ContactNumber"]);
-                mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
-                mTaxCode = Convert.ToString(DB.DataTable.Rows[0]["TaxCode"]);
-                mNINumber = Convert.ToString(DB.DataTable.Rows[0]["NINumber"]);
-                mShift = Convert.ToBoolean(DB.DataTable.Rows[0]["Shift"]);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMaxLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMid()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMaxPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffLastNameMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffLastName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StaffFirstNameMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StaffFirstNameMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "a";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
 
         }
+
+        [TestMethod]
+        public void StaffFirstNameMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "aa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+        public void StaffFirstNameMaxLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            StaffFirstName = StaffFirstName.PadRight(49, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StaffFirstNameMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            StaffFirstName = StaffFirstName.PadRight(50, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StaffFirstNameMid()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            StaffFirstName = StaffFirstName.PadRight(25, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void StaffFirstNameMaxPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void StaffFirstNameExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            StaffFirstName = StaffFirstName.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void StaffFirstNameExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            StaffFirstName = StaffFirstName.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void NINumberMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NINumberMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "a";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void NINumberMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "aa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+        public void NINumberMaxLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "aaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void NINumberMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "aaaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void NINumberMid()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "aaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void NINumberMaxPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void NINumberExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string NINumber = "";
+            NINumber = NINumber.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void NINumberExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string StaffFirstName = "";
+            NINumber = NINumber.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateStartedExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateStarted = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateStartedMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1);
+            string DateStarted = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateStartedMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateStarted = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateStartedMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateStarted = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateStartedExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DateStarted = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateEnded = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1);
+            string DateEnded = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateEnded = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateEnded = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DateEnded = TestDate.ToString();
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateStartedInvalidData()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string DateStarted = "this is not a date!";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateEndedInvalidData()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string DateEnded = "this is not a date!";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void ContactNumberMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ContactNumberMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "a";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ContactNumberMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "aa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+        public void ContactNumberMaxLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "aaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ContactNumberMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "aaaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ContactNumberMid()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "aaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void ContactNumberMaxPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void ContactNumberExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "";
+            ContactNumber = ContactNumber.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ContactNumberExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string ContactNumber = "";
+            ContactNumber = ContactNumber.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+      
+        [TestMethod]
+        public void TaxCodeMinLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = " ";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TaxCodeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "a";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void TaxCodeMinPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "aa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+        public void TaxCoderMaxLessOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "aaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void TaxCodeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "aaaaaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void TaxCodeMid()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "aaa";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void TaxCodeMaxPlusOne()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "";
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void TaxCodeExtremeMax()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "";
+            TaxCode = TaxCode.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void TaxCodeExtremeMin()
+        {
+            clsStaff AnStaff = new clsStaff();
+            String Error = "";
+            string TaxCode = "";
+            TaxCode = TaxCode.PadRight(500, 'a');
+            Error = AnStaff.Valid(StaffLastName, StaffFirstName, NINumber, DateStarted, TaxCode, ContactNumber, DateEnded);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
 
         public string Valid(string StaffFirstName, string StaffLastName, string NINumber, string dateStarted, string dateEnded, string TaxCode, string ContactNumber)
         {
@@ -416,6 +1000,36 @@ public bool OK { get; private set; }
 
         }
     }
+
+    //public DateTime DateTemp { get; private set; }
+
+    public bool Find(int StaffId)
+    {
+        clsDataConnection DB = new clsDataConnection();
+        DB.AddParameter("@StaffId", StaffId);
+        DB.Execute("sproc_tblStaff_FilterByStaffId");
+        if (DB.Count == 1)
+        {
+            mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+            mDateStarted = Convert.ToDateTime(DB.DataTable.Rows[0]["DateStarted"]);
+            mDateEnded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateEnded"]);
+            mStaffFirstName = Convert.ToString(DB.DataTable.Rows[0]["StaffFirstName"]);
+            mStaffLastName = Convert.ToString(DB.DataTable.Rows[0]["StaffLastName"]);
+            mContactNumber = Convert.ToString(DB.DataTable.Rows[0]["ContactNumber"]);
+            mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
+            mTaxCode = Convert.ToString(DB.DataTable.Rows[0]["TaxCode"]);
+            mNINumber = Convert.ToString(DB.DataTable.Rows[0]["NINumber"]);
+            mShift = Convert.ToBoolean(DB.DataTable.Rows[0]["Shift"]);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+}
+
 
 
 
