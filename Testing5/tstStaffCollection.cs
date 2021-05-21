@@ -1,9 +1,11 @@
 ﻿using Class_Library;
+using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Test_
+
+namespace Test_Framework
 {
     [TestClass]
     public class tstStaffCollection
@@ -15,42 +17,46 @@ namespace Test_
             clsStaffCollection AllStaffs = new clsStaffCollection();
             Assert.IsNotNull(AllStaffs);
         }
-
         [TestMethod]
         public void StaffListOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            List<clsStaff> TestList = new List<clsStaff>();
-            clsStaff TestItem = new clsStaff();
+            List<Class_Library.clsStaff> TestList = new List<Class_Library.clsStaff>();
+            Class_Library.clsStaff TestItem = new Class_Library.clsStaff();
 
 
 
-            TestItem.Name = "Kim";
-            TestItem.Surname = "Amir";
-            TestItem.Address = "2b Cross Streey";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
             TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true;
+
 
             TestList.Add(TestItem);
             AllStaffs.StaffList = TestList;
             Assert.AreEqual(AllStaffs.StaffList, TestList);
 
         }
-
-
         [TestMethod]
         public void ThisStaffPropertyOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            clsStaff TestStaff = new clsStaff();
+            Class_Library.clsStaff TestStaff = new Class_Library.clsStaff();
 
-            TestStaff.Name = "Kim";
-            TestStaff.Surname = "Amir";
-            TestStaff.Address = "2b Cross Streey";
+            TestStaff.StaffFirstName = "Kim";
+            TestStaff.StaffLastName = "Amir";
+            TestStaff.ContactNumber = "07876547";
+            TestStaff.NINumber = "987654456.";
+            TestStaff.TaxCode = "P65.";
             TestStaff.DateStarted = DateTime.Now.Date;
             TestStaff.DateEnded = DateTime.Now.Date;
             TestStaff.Salary = Convert.ToDecimal("1266.00");
+            TestStaff.Shift = true;
 
             AllStaffs.ThisStaff = TestStaff;
             Assert.AreEqual(AllStaffs.ThisStaff, TestStaff);
@@ -60,36 +66,41 @@ namespace Test_
         public void ListAndCountOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            List<clsStaff> TestList = new List<clsStaff>();
-            clsStaff TestItem = new clsStaff();
+            List<Class_Library.clsStaff> TestList = new List<Class_Library.clsStaff>();
+            Class_Library.clsStaff TestItem = new Class_Library.clsStaff();
 
 
-            TestItem.Name = "Kim";
-            TestItem.Surname = "Amir";
-            TestItem.Address = "2b Cross Streey";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
             TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true;
 
             TestList.Add(TestItem);
             AllStaffs.StaffList = TestList;
             Assert.AreEqual(AllStaffs.Count, TestList.Count);
 
         }
-
         [TestMethod]
         public void AddMethodOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            clsStaff TestItem = new clsStaff();
+            Class_Library.clsStaff TestItem = new Class_Library.clsStaff();
             Int32 PrimaryKey = 0;
 
-            TestItem.Name = "Kim";
-            TestItem.Surname = "Amir";
-            TestItem.Address = "2b Cross Streey";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
             TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true; ;
 
             AllStaffs.ThisStaff = TestItem;
             PrimaryKey = AllStaffs.Add();
@@ -98,24 +109,23 @@ namespace Test_
             Assert.AreEqual(AllStaffs.ThisStaff, TestItem);
 
         }
-       
-
-
-        
         [TestMethod]
         public void DeleteMethodOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            clsStaff TestItem = new clsStaff();
+            Class_Library.clsStaff TestItem = new Class_Library.clsStaff();
             Int32 PrimaryKey = 0;
 
 
-            TestItem.Name = "Kim";
-            TestItem.Surname = "Amir";
-            TestItem.Address = "2b Cross Streey";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
             TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true; ;
 
             AllStaffs.ThisStaff = TestItem;
             PrimaryKey = AllStaffs.Add();
@@ -127,38 +137,43 @@ namespace Test_
 
 
         }
-
         [TestMethod]
         public void UpdateMethodOK()
         {
             clsStaffCollection AllStaffs = new clsStaffCollection();
-            clsStaff TestItem = new clsStaff();
+            Class_Library.clsStaff TestItem = new Class_Library.clsStaff();
             Int32 PrimaryKey = 0;
 
 
-            TestItem.Name = "Kim";
-            TestItem.Surname = "Amir";
-            TestItem.Address = "2b Cross Streey";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
             TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true; ;
+
 
             AllStaffs.ThisStaff = TestItem;
             PrimaryKey = AllStaffs.Add();
-            TestItem.StaffNo = PrimaryKey;
-            TestItem.Name = "Kimea";
-            TestItem.Surname = "Amirk";
-            TestItem.Address = "3b Cross Street";
+            TestItem.StaffFirstName = "Kim";
+            TestItem.StaffLastName = "Amir";
+            TestItem.ContactNumber = "07876547";
+            TestItem.NINumber = "987654456.";
+            TestItem.TaxCode = "P65.";
             TestItem.DateStarted = DateTime.Now.Date;
             TestItem.DateEnded = DateTime.Now.Date;
-            TestItem.Salary = Convert.ToDecimal("1566.00");
+            TestItem.Salary = Convert.ToDecimal("1266.00");
+            TestItem.Shift = true; ;
+
 
             AllStaffs.ThisStaff = TestItem;
             AllStaffs.Update();
             AllStaffs.ThisStaff.Find(PrimaryKey);
             Assert.AreEqual(AllStaffs.ThisStaff, TestItem);
         }
-
         [TestMethod]
         public void ReportByNameMethodOK()
         {
@@ -167,7 +182,6 @@ namespace Test_
             FilteredStaffs.ReportByName("");
             Assert.AreEqual(AllStaffs.Count, FilteredStaffs.Count);
         }
-
         [TestMethod]
         public void ReportByNameNoneFound()
         {
@@ -175,9 +189,8 @@ namespace Test_
             clsStaffCollection FilteredStaffs = new clsStaffCollection();
             FilteredStaffs.ReportByName("Bob");
             Assert.AreEqual(0, FilteredStaffs.Count);
-            
-        }
 
+        }
         [TestMethod]
         public void ReportByNameTestDataFound()
         {
@@ -203,9 +216,10 @@ namespace Test_
             Assert.IsTrue(OK);
 
         }
-            
 
-        
+
+
     }
 }
+
 
