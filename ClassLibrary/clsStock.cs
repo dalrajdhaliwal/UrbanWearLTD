@@ -104,8 +104,14 @@ namespace ClassLibrary
 
         }
 
-
-
+        public string StaffLastName { get; set; }
+        public string ContactNumber { get; set; }
+        public string Salary { get; set; }
+        public string DateStarted { get; set; }
+        public string DateEnded { get; set; }
+        public string TaxCode { get; set; }
+        public string Shift { get; set; }
+        public string NINumber { get; internal set; }
 
         public bool Find(int ProductId)
         {

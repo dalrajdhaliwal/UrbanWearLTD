@@ -1,4 +1,5 @@
 ﻿using System;
+using ClassLibrary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,7 +32,7 @@ public class clsDataConnection
         connectionString = GetConnectionString();
     }
 
-    internal void AddParameter(string v, object staffId)
+    public void AddParameter(string v, object staffId)
     {
         throw new NotImplementedException();
     }
@@ -127,7 +128,7 @@ public class clsDataConnection
         }
     }
 
-    internal void AddParameter(string v, object taxCode)
+    internal void AddParameter(string v, string taxCode)
     {
         throw new NotImplementedException();
     }
