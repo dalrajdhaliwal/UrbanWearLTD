@@ -5,11 +5,11 @@ namespace ClassLibrary
 {
     public class clsStockCollection
     {
-        List<clsStock> mStockList = new List<clsStock>();
-        clsStock mThisStock = new clsStock();
+        List<clsStaff> mStockList = new List<clsStaff>();
+        clsStaff mThisStock = new clsStaff();
 
 
-        public List<clsStock> StockList
+        public List<clsStaff> StockList
         {
             get
             {
@@ -46,7 +46,7 @@ namespace ClassLibrary
 
 
 
-        public clsStock ThisStock
+        public clsStaff ThisStock
         {
             get
             {
@@ -67,12 +67,12 @@ namespace ClassLibrary
             Int32 Index = 0;
             Int32 RecordCount = 0;
             RecordCount = DB.Count;
-            mStockList = new List<clsStock>();
+            mStockList = new List<clsStaff>();
             while (Index < RecordCount)
             {
-                clsStock AStock = new clsStock();
-                AStock.ProductId = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductId"]);
-                AStock.InStock = Convert.ToInt32(DB.DataTable.Rows[Index]["InStock"]);
+                clsStaff AStock = new clsStaff();
+                AStock.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductId"]);
+                AStock.StaffFirstName = Convert.ToInt32(DB.DataTable.Rows[Index]["InStock"]);
                 AStock.StockVariants = Convert.ToInt32(DB.DataTable.Rows[Index]["StockVariants"]);
                 AStock.ProductName = Convert.ToString(DB.DataTable.Rows[Index]["ProductName"]);
                 AStock.Price = Convert.ToDecimal(DB.DataTable.Rows[Index]["Price"]);
@@ -88,7 +88,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ProductName", mThisStock.ProductName);
-            DB.AddParameter("@InStock", mThisStock.InStock);
+            DB.AddParameter("@InStock", mThisStock.StaffFirstName);
             DB.AddParameter("@StockVariants", mThisStock.StockVariants);
             DB.AddParameter("@Price", mThisStock.Price);
             DB.AddParameter("@ProductDescription", mThisStock.ProductDescription);
@@ -99,9 +99,9 @@ namespace ClassLibrary
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ProductId", mThisStock.ProductId);
+            DB.AddParameter("@ProductId", mThisStock.StaffId);
             DB.AddParameter("@ProductName", mThisStock.ProductName);
-            DB.AddParameter("@InStock", mThisStock.InStock);
+            DB.AddParameter("@InStock", mThisStock.StaffFirstName);
             DB.AddParameter("@StockVariants", mThisStock.StockVariants);
             DB.AddParameter("@Price", mThisStock.Price);
             DB.AddParameter("@ProductDescription", mThisStock.ProductDescription);
@@ -113,7 +113,7 @@ namespace ClassLibrary
         public void Delete()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ProductId", mThisStock.ProductId);
+            DB.AddParameter("@ProductId", mThisStock.StaffId);
             DB.Execute("sproc_tblStocks_Delete");
         }
 

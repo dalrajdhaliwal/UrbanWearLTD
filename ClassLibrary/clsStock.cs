@@ -2,7 +2,7 @@
 
 namespace ClassLibrary
 {
-    public class clsStock
+    public class clsStaff
     {
          int mProductId;
          string mProductName;
@@ -12,7 +12,7 @@ namespace ClassLibrary
          int mStockVariants;
          decimal mPrice;
 
-        public Int32 ProductId
+        public Int32 StaffId
         {
             get
             {
@@ -91,7 +91,7 @@ namespace ClassLibrary
 
         }
 
-        public int InStock
+        public int StaffFirstName
         {
             get
             {
@@ -243,8 +243,9 @@ namespace ClassLibrary
             return Error;
         }
 
-
-
-
+        public static implicit operator clsStaff(clsStaffCollection v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

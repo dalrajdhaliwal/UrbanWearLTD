@@ -20,13 +20,13 @@ namespace Testing4
         public void StockListOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            List<clsStock> TestList = new List<clsStock>();
-            clsStock TestItem = new clsStock();
-            TestItem.ProductId = 1;
+            List<clsStaff> TestList = new List<clsStaff>();
+            clsStaff TestItem = new clsStaff();
+            TestItem.StaffId = 1;
             TestItem.ProductName = "shirt";
             TestItem.StockVariants = 118;
             TestItem.Price = 239;
-            TestItem.InStock = 58;
+            TestItem.StaffFirstName = 58;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "long sleeve shirt";
             TestList.Add(TestItem);
@@ -40,12 +40,12 @@ namespace Testing4
         public void ThisStockPropertyOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            clsStock TestItem = new clsStock();
-            TestItem.ProductId = 1;
+            clsStaff TestItem = new clsStaff();
+            TestItem.StaffId = 1;
             TestItem.ProductName = "shirt";
             TestItem.StockVariants = 118;
             TestItem.Price = 239;
-            TestItem.InStock = 58;
+            TestItem.StaffFirstName = 58;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "long sleeve shirt";
             AllStock.ThisStock = TestItem;
@@ -57,13 +57,13 @@ namespace Testing4
         public void ListAndCountOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            List<clsStock> TestList = new List<clsStock>();
-            clsStock TestItem = new clsStock();
-            TestItem.ProductId = 1;
+            List<clsStaff> TestList = new List<clsStaff>();
+            clsStaff TestItem = new clsStaff();
+            TestItem.StaffId = 1;
             TestItem.ProductName = "shirt";
             TestItem.StockVariants = 118;
             TestItem.Price = 239;
-            TestItem.InStock = 58;
+            TestItem.StaffFirstName = 58;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "long sleeve shirt";
             TestList.Add(TestItem);
@@ -75,18 +75,18 @@ namespace Testing4
         public void AddMethodOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            clsStock TestItem = new clsStock();
+            clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
-            TestItem.ProductId = 1;
+            TestItem.StaffId = 1;
             TestItem.ProductName = "jeans";
             TestItem.StockVariants = 278;
             TestItem.Price = 17;
-            TestItem.InStock = 75;
+            TestItem.StaffFirstName = 75;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "tapered jeans";
             AllStock.ThisStock = TestItem;
             PrimaryKey = AllStock.Add();
-            TestItem.ProductId = PrimaryKey;
+            TestItem.StaffId = PrimaryKey;
             AllStock.ThisStock.Find(PrimaryKey);
             Assert.AreEqual(AllStock.ThisStock, TestItem);
         }
@@ -95,23 +95,23 @@ namespace Testing4
         public void UpdateMethodOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            clsStock TestItem = new clsStock();
+            clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
             //test data to update
 
             TestItem.ProductName = "jeans";
             TestItem.StockVariants = 278;
             TestItem.Price = 17;
-            TestItem.InStock = 75;
+            TestItem.StaffFirstName = 75;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "tapered jeans";
             AllStock.ThisStock = TestItem;
-            TestItem.ProductId = PrimaryKey;
+            TestItem.StaffId = PrimaryKey;
             //new test data
             TestItem.ProductName = "trousers";
             TestItem.StockVariants = 298;
             TestItem.Price = 19;
-            TestItem.InStock = 76;
+            TestItem.StaffFirstName = 76;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "tepered trousers";
             AllStock.ThisStock = TestItem;
@@ -124,18 +124,18 @@ namespace Testing4
         public void DeleteMethodOK()
         {
             clsStockCollection AllStock = new clsStockCollection();
-            clsStock TestItem = new clsStock();
+            clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
             //data to delete
             TestItem.ProductName = "jeans";
             TestItem.StockVariants = 278;
             TestItem.Price = 17;
-            TestItem.InStock = 75;
+            TestItem.StaffFirstName = 75;
             TestItem.LastRestockDate = DateTime.Now.Date;
             TestItem.ProductDescription = "tapered jeans";
             AllStock.ThisStock = TestItem;
             PrimaryKey = AllStock.Add();
-            TestItem.ProductId = PrimaryKey;
+            TestItem.StaffId = PrimaryKey;
             AllStock.ThisStock.Find(PrimaryKey);
             AllStock.Delete();
             Boolean Found = AllStock.ThisStock.Find(PrimaryKey);
@@ -171,7 +171,7 @@ namespace Testing4
             FilteredStocks.FilterByProductName("aa");
             if (FilteredStocks.Count == 1)
             {
-                if (FilteredStocks.StockList[0].ProductId != 1)
+                if (FilteredStocks.StockList[0].StaffId != 1)
                 {
                     OK = false;
                 }

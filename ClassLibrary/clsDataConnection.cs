@@ -31,6 +31,11 @@ public class clsDataConnection
         connectionString = GetConnectionString();
     }
 
+    internal void AddParameter(string v, object staffId)
+    {
+        throw new NotImplementedException();
+    }
+
     private string GetConnectionString()
     {
         System.Net.WebClient client = new System.Net.WebClient();
@@ -120,6 +125,11 @@ public class clsDataConnection
         {
             throw new System.Exception("You have too many database files in your App_Data folder");
         }
+    }
+
+    internal void AddParameter(string v, object taxCode)
+    {
+        throw new NotImplementedException();
     }
 
     private string TrimPath(string OldPath)
